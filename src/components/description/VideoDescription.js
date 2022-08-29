@@ -1,6 +1,7 @@
+import React from "react";
 import LikeUnlike from "./LikeUnlike";
 
-export default function VideoDescription() {
+const VideoDescription = () => {
   return (
     <div>
       <h1 className="text-lg font-semibold tracking-tight text-slate-800">
@@ -19,4 +20,6 @@ export default function VideoDescription() {
       </div>
     </div>
   );
-}
+};
+
+export default VideoDescription;

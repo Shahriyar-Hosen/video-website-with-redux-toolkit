@@ -1,4 +1,6 @@
-export default function Player() {
+import React from "react";
+
+const Player = () => {
   return (
     <iframe
       width="100%"
@@ -10,4 +12,6 @@ export default function Player() {
       allowFullScreen
     ></iframe>
   );
-}
+};
+
+export default Player;
