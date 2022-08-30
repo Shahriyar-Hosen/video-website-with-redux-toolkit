@@ -17,7 +17,7 @@ const RelatedVideoListItem = () => {
         </p>
       </div>
 
-      <div clas="flex flex-col w-full">
+      <div className="flex flex-col w-full">
         <Link to="/video/1">
           <p className="text-slate-900 text-sm font-semibold">
             Some video title
