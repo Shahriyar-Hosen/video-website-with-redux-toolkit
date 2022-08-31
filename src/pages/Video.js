@@ -18,7 +18,7 @@ const Video = () => {
     dispatch(fetchVideo(videoId));
   }, [dispatch, videoId]);
 
-  const { id, link, tags, title, description } = video || {};
+  const { id, link, tags, title } = video || {};
 
   // decide what to render
   let content = null;
@@ -38,10 +38,10 @@ const Video = () => {
         <div className="col-span-full w-full space-y-8 lg:col-span-2">
           <VideoPlayer title={title} link={link} />
 
-          <VideoDescription />
+          <VideoDescription video={video} />
         </div>
 
-        <RelatedVideoList />
+        <RelatedVideoList currentVideoId={id} tags={tags} />
       </div>
     );
   }
