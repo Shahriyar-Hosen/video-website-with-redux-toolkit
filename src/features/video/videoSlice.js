@@ -14,6 +14,7 @@ export const fetchVideo = createAsyncThunk("video/fetchVideo", async (id) => {
   return video;
 });
 
+// video Slice
 const videoSlice = createSlice({
   name: "video",
   initialState,
