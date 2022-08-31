@@ -10,6 +10,7 @@ const App = () => {
     <main>
       <Navbar />
       <Routes>
+        {/* dsafadsfsadf */}
         <Route path="/" element={<Home />} />
         <Route path="/videos/:videoId" element={<Video />} />
       </Routes>
