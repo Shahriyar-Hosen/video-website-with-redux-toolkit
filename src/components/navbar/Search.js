@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
+import { useMatch, useNavigate } from "react-router-dom";
 import { searched } from "../../features/filter/filterSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
   const { search } = useSelector((state) => state.filter);
-  
+  const match = useMatch("/");
+  const navigate = useNavigate();
+
   const [input, setInput] = useState(search);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(searched(input));
+
+    if (!match) {
+      navigate("/");
+    }
   };
 
   return (
