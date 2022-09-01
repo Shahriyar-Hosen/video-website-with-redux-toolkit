@@ -5,17 +5,12 @@ const VideoGridItem = ({ video = {} }) => {
   const {
     id,
     title,
-    description,
     author,
     avatar,
     date,
     duration,
     views,
-    link,
     thumbnail,
-    tags,
-    likes,
-    unlikes,
   } = video;
   return (
     <div className="col-span-12 sm:col-span-6 md:col-span-3 duration-300 hover:scale-[1.03]">
