@@ -13,10 +13,15 @@ const Tags = () => {
 
   return tags.length > 0 ? (
     <section>
-      <div className="max-w-7xl mx-auto px-5 py-6 lg:px-0 flex gap-2 border-b overflow-y-auto">
-        {tags.map((tag) => (
-          <Tag key={tag.id} title={tag.title} />
-        ))}
+      <div className="max-w-7xl mx-auto px-5 py-6 lg:px-0 flex justify-between border-b ">
+        <div className="flex gap-2 overflow-y-auto ">
+          {tags.map((tag) => (
+            <Tag key={tag.id} title={tag.title} />
+          ))}
+        </div>
+        <button className="bg-cyan-200 text-cyan-700 px-4 py-1 rounded-full cursor-pointer hover:bg-cyan-300 hover:text-cyan-800">
+          Reset
+        </button>
       </div>
     </section>
   ) : null;

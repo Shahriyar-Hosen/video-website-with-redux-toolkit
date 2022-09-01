@@ -13,6 +13,7 @@ const filterSlice = createSlice({
     tagsSelected: (state, action) => {
       state.tags.push(action.payload);
     },
+
     tagsRemoved: (state, action) => {
       const indexToRemove = state.tags.indexOf(action.payload);
 
@@ -20,10 +21,17 @@ const filterSlice = createSlice({
         state.tags.splice(indexToRemove, 1);
       }
     },
+
     searched: (state, action) => {
       state.search = action.payload;
     },
+
+    resetFilter: (state, action) => {
+      state.tags = [];
+      state.search = "";
+    },
   },
 });
-export const { tagsSelected, tagsRemoved, searched } = filterSlice.actions;
+export const { tagsSelected, tagsRemoved, searched, resetFilter } =
+  filterSlice.actions;
 export default filterSlice.reducer;
