@@ -4,6 +4,7 @@ const initialState = {
   tags: [],
   search: "",
 };
+
 // filter Slice
 const filterSlice = createSlice({
   name: "filter",
