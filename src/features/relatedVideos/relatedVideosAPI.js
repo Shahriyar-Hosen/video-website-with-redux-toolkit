@@ -10,7 +10,6 @@ export const getRelatedVideos = async ({ tags, id }) => {
         `&id_ne=${id}` +
         `&limit=${limit}`
       : `id_ne=${id}&limit=${limit}`;
-  console.log(`/videos?${queryString}`);
   const { data } = await axios.get(`/videos?${queryString}`);
   return data;
 };
