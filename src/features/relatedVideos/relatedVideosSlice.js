@@ -1,40 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getVideos } from "./videosAPI";
+import { getRelatedVideos } from "./relatedVideosAPI";
 
 const initialState = {
-  videos: [],
+  relatedVideos: [],
   isLoading: false,
   isError: false,
   error: "",
 };
 
 // Async Thunk
-export const fetchVideos = createAsyncThunk("videos/fetchVideos", async () => {
-  const videos = await getVideos();
-  return videos;
-});
+export const fetchRelatedVideos = createAsyncThunk(
+  "relatedVideos/fetchRelatedVideos",
+  async ({ tags, id }) => {
+    const relatedVideos = await getRelatedVideos({ tags, id });
+    return relatedVideos;
+  }
+);
 
-// videos Slice
-const videosSlice = createSlice({
-  name: "videos",
+// related Videos Slice
+const relatedVideosSlice = createSlice({
+  name: "relatedVideos",
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchVideos.pending, (state) => {
+      .addCase(fetchRelatedVideos.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
       })
-      .addCase(fetchVideos.fulfilled, (state, action) => {
+      .addCase(fetchRelatedVideos.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.videos = action.payload;
+        state.relatedVideos = action.payload;
       })
-      .addCase(fetchVideos.rejected, (state, action) => {
+      .addCase(fetchRelatedVideos.rejected, (state, action) => {
         state.isLoading = false;
-        state.videos = [];
+        state.relatedVideos = [];
         state.isError = true;
         state.error = action.error?.message;
       });
   },
 });
 
-export default videosSlice.reducer;
+export default relatedVideosSlice.reducer;
