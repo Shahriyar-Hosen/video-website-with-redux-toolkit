@@ -7,10 +7,11 @@ import VideoGridItem from "./VideoGridItem";
 const VideoGrid = () => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state.videos);
+  const { tags, search } = useSelector((state) => state.filter);
 
   useEffect(() => {
-    dispatch(fetchVideos());
-  }, [dispatch]);
+    dispatch(fetchVideos({ tags, search }));
+  }, [dispatch, tags, search]);
 
   const { videos, isLoading, isError, error } = store;
 
@@ -18,7 +19,7 @@ const VideoGrid = () => {
   let content;
 
   if (isLoading) content = <Loading />;
-  
+
   if (!isLoading && isError)
     content = <div className="col-span-12">{error}</div>;
 
