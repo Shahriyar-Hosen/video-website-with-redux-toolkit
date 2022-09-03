@@ -6,14 +6,25 @@ import VideoGridItem from "./VideoGridItem";
 
 const VideoGrid = () => {
   const dispatch = useDispatch();
-  const store = useSelector((state) => state.videos);
-  const { tags, search } = useSelector((state) => state.filter);
+  const { videos: initVideo, paginate } = useSelector((state) => state);
+  const { tags, search, author } = useSelector((state) => state.filter);
 
   useEffect(() => {
-    dispatch(fetchVideos({ tags, search }));
-  }, [dispatch, tags, search]);
+    dispatch(fetchVideos({ tags, search, author }));
+  }, [dispatch, tags, search, author]);
 
-  const { videos, isLoading, isError, error } = store;
+  const { videos, isLoading, isError, error } = initVideo;
+
+  const { pageSize, pageNumber } = paginate;
+
+  // paginate
+  const pagination = (array, page_size, page_number) => {
+    const data = array.slice(
+      (page_number - 1) * page_size,
+      page_number * page_size
+    );
+    return data;
+  };
 
   // decide what to render
   let content;
@@ -28,7 +39,7 @@ const VideoGrid = () => {
   }
 
   if (!isError && !isLoading && videos?.length > 0) {
-    content = videos.map((video) => (
+    content = pagination(videos, pageSize, pageNumber).map((video) => (
       <VideoGridItem key={video.id} video={video} />
     ));
   }

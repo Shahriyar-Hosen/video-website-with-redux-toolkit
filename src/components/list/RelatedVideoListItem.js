@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { authored } from "../../features/filter/filterSlice";
 
 const RelatedVideoListItem = ({ relatedVideo }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { id, title, thumbnail, duration, author, views, date } =
     relatedVideo || {};
+
+  const authorFilter = (author) => {
+    navigate("/");
+    dispatch(authored(author));
+  };
 
   return (
     <div className="w-full flex flex-row gap-2 mb-4">
@@ -20,12 +30,12 @@ const RelatedVideoListItem = ({ relatedVideo }) => {
         <Link to={`/videos/${id}`}>
           <p className="text-slate-900 text-sm font-semibold">{title}</p>
         </Link>
-        <Link
-          to={`/videos/${id}`}
-          className="text-gray-400 text-xs mt-2 hover:text-gray-600"
+        <div
+          onClick={() => authorFilter(author)}
+          className="text-gray-400 text-xs mt-2 hover:text-gray-600 cursor-pointer"
         >
           {author}
-        </Link>
+        </div>
         <p className="text-gray-400 text-xs mt-1">
           {views} views . {date}
         </p>

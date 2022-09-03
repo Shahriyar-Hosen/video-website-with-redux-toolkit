@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   tags: [],
   search: "",
+  author: "",
 };
 
 // filter Slice
@@ -26,12 +27,19 @@ const filterSlice = createSlice({
       state.search = action.payload;
     },
 
-    resetFilter: (state, action) => {
+    authored: (state, action) => {
       state.tags = [];
       state.search = "";
+      state.author = action.payload;
+    },
+
+    resetFilter: (state) => {
+      state.tags = [];
+      state.search = "";
+      state.author = "";
     },
   },
 });
-export const { tagsSelected, tagsRemoved, searched, resetFilter } =
+export const { tagsSelected, tagsRemoved, searched, authored, resetFilter } =
   filterSlice.actions;
 export default filterSlice.reducer;

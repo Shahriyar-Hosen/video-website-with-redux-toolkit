@@ -6,7 +6,7 @@ import Tag from "./Tag";
 
 const Tags = () => {
   const tags = useSelector((state) => state.tags.tags);
-  const { tags: selectedTags, search } = useSelector((state) => state.filter);
+  const { tags: selectedTags, search, author } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Tags = () => {
             <Tag key={tag.id} title={tag.title} />
           ))}
         </div>
-        {(selectedTags.length > 0 || search) && (
+        {(selectedTags.length > 0 || search || author) && (
           <button
             className="bg-cyan-200 text-cyan-700 px-4 py-1 rounded-full cursor-pointer hover:bg-cyan-300 hover:text-cyan-800"
             onClick={handleReset}
