@@ -22,6 +22,7 @@
    ```
 
 2. Store configuration
+
    ```sh
    import { configureStore } from "@reduxjs/toolkit";
    import { apiSlice } from "../features/api/apiSlice";
@@ -33,5 +34,19 @@
       middleware: (getDefaultMiddlewares) =>
          getDefaultMiddlewares().concat(apiSlice.middleware),
    });
+
+   ```
+
+3. Query in Api Slice => Get Api items --> like videos
+
+   ```sh
+     endpoints: (builder) => ({
+         // Query --> like get
+         getVideos: builder.query({
+            query: () => "/videos",
+         }),
+      }),
+
+   export const { useGetVideosQuery } = apiSlice;
 
    ```
