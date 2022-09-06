@@ -77,10 +77,55 @@ export const { useGetVideosQuery } = apiSlice;
 
    return content;
 
-   return (
-      <>
-         {content}
-      </>
-   );
+   # likes -->
+   # return (
+   #    <>
+   #       {content}
+   #    </>
+   # );
+
+```
+
+#### 4. Query in Api Slice => Get Api item --> like single video
+
+```sh
+   endpoints: (builder) => ({
+         // Query --> like get
+         getVideo: builder.query({
+         query: (videoId) => `/videos/${videoId}`,
+      }),
+      }),
+
+   export const { useGetVideoQuery } = apiSlice;
+
+```
+
+#### 4.1 Get Api item --> like single video in ui
+
+```sh
+   const { videoId } = useParams();
+   const { data: video, isLoading, isError } = useGetVideoQuery(videoId);
+
+   let content = null;
+   if (isLoading) {
+      content = <Loading />;
+   }
+
+   if (!isLoading && isError) {
+      content = <Error message="There was an error!" />;
+   }
+
+   if (!isLoading && !isError && video?.id) {
+      content = video;
+   }
+
+      return content;
+
+      # likes -->
+      # return (
+      #    <>
+      #       {content}
+      #    </>
+      # );
 
 ```
