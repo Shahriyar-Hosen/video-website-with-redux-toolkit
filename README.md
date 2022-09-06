@@ -4,7 +4,7 @@
 
 ### API Slice creation & Store configuration
 
-1. #### Create Api Slice -
+#### 1. Create Api Slice -
 
    ```sh
    import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
@@ -21,7 +21,7 @@
 
    ```
 
-2. #### Store configuration
+#### 2. Store configuration
 
    ```sh
    import { configureStore } from "@reduxjs/toolkit";
@@ -37,7 +37,7 @@
 
    ```
 
-3. #### Query in Api Slice => Get Api items --> like videos
+#### 3. Query in Api Slice => Get Api items --> like videos
 
    ```sh
      endpoints: (builder) => ({
