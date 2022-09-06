@@ -77,12 +77,12 @@ export const { useGetVideosQuery } = apiSlice;
 
    return content;
 
-   # likes -->
-   # return (
-   #    <>
-   #       {content}
-   #    </>
-   # );
+   // likes -->
+   // return (
+   //    <>
+   //       {content}
+   //    </>
+   // );
 
 ```
 
@@ -121,11 +121,11 @@ export const { useGetVideosQuery } = apiSlice;
 
       return content;
 
-      # likes -->
-      # return (
-      #    <>
-      #       {content}
-      #    </>
-      # );
+      // likes -->
+      // return (
+      //    <>
+      //       {content}
+      //    </>
+      // );
 
 ```
