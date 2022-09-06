@@ -33,7 +33,7 @@ const Videos = () => {
     content = videos.map((video) => <Video key={video.id} video={video} />);
   }
 
-  return content;
+    return content;
 };
 
 export default Videos;
