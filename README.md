@@ -205,8 +205,10 @@ export const { useGetRelatedVideosQuery } = apiSlice;
             method: "POST",
             body: data,
          }),
+
          // Invalidates tags videos catch & than Automated Re-fetching
          invalidatesTags: ["Videos"],
+         
       }),
    }),
 

@@ -6,6 +6,7 @@ export const apiSlice = createApi({
     baseUrl: "http://localhost:9000",
   }),
 
+  // tag Types -> added tags
   tagTypes: ["Videos"],
 
   endpoints: (builder) => ({
@@ -36,6 +37,8 @@ export const apiSlice = createApi({
         method: "POST",
         body: data,
       }),
+
+      // Invalidates tags videos catch & than Automated Re-fetching
       invalidatesTags: ["Videos"],
     }),
   }),
