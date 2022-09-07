@@ -168,14 +168,50 @@ export const { useGetRelatedVideosQuery } = apiSlice;
 #### 6.1 Mutation - Add Items/video to server API in UI
 
 ```sh
-     const [addVideo, { isLoading, isSuccess, isError }] = useAddVideoMutation();
+   const [addVideo, { isLoading, isSuccess, isError }] = useAddVideoMutation();
 
        // Submit function
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    addVideo(data);
+   const handleSubmit = (e) => {
+      e.preventDefault();
 
-  };
+      addVideo(data);
+
+   };
+
+```
+
+#### 6.2 Cache Behavior - Revalidation => Automated Re-fetching --> Adding video - POST request
+
+##### stapes -> (1)
+
+```sh
+   reducerPath: "api",
+   baseQuery: fetchBaseQuery({}),
+
+   // tag Types -> added tags
+   tagTypes: ["Videos"],
+
+   endpoints:{}
+
+```
+
+##### stapes -> (2)
+
+```sh
+   endpoints: (builder) => ({
+      addVideo: builder.mutation({
+         query: (data) => ({
+            url: "/videos",
+            method: "POST",
+            body: data,
+         }),
+
+         // Invalidates tags videos catch & than Automated Re-fetching
+         invalidatesTags: ["Videos"],
+         
+      }),
+   }),
+
+   export const { useGetVideoQuery } = apiSlice;
 
 ```
