@@ -129,3 +129,21 @@ export const { useGetVideosQuery } = apiSlice;
       // );
 
 ```
+
+#### 5. Related Search --> Get Api item title By Title => Get Api items --> like videos
+
+```sh
+   getRelatedVideos: builder.query({
+      query: ({ id, title }) => {
+        const tagsString = title
+          .split(" ")
+          .map((tag) => `tags_like=${tag}`)
+          .join("&");
+        const queryString = `/videos?${tagsString}&limit=5`;
+        return queryString;
+      },
+    }),
+
+export const { useGetRelatedVideosQuery } = apiSlice;
+
+```
