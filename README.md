@@ -137,9 +137,9 @@ export const { useGetVideosQuery } = apiSlice;
       query: ({ id, title }) => {
         const tagsString = title
           .split(" ")
-          .map((tag) => `tags_like=${tag}`)
+          .map((tag) => `title_like=${tag}`)
           .join("&");
-        const queryString = `/videos?${tagsString}&limit=5`;
+        const queryString = `/videos?${tagsString}&_limit=4`;
         return queryString;
       },
     }),
