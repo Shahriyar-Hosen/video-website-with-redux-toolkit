@@ -188,14 +188,62 @@ export const { useGetRelatedVideosQuery } = apiSlice;
    reducerPath: "api",
    baseQuery: fetchBaseQuery({}),
 
-   // tag Types -> added tags
-   tagTypes: ["Videos"],
+   // tag Types -> added Unique tags
+   tagTypes: ["Videos", "Video", "RelatedVideos"],
 
    endpoints:{}
 
 ```
 
 ##### stapes -> (2)
+
+```sh
+   endpoints:({
+      getVideos: builder.query({
+      query: () => "/videos",
+      keepUnusedDataFor: 600,
+
+      // Provides This Query Unique Tags
+      providesTags: ["Videos"],
+    }),
+```
+
+#### or
+
+```sh
+
+   getVideo: builder.query({
+      query: (videoId) => `/videos/${videoId}`,
+
+      // Provides This Query Unique Tags
+      providesTags: (result, error, arg) => [{ type: "Video", id: arg }],
+   }),
+```
+
+#### or
+
+```sh
+   getRelatedVideos: builder.query({
+      query: ({ id, title }) => {
+        const tagsString = title
+          .split(" ")
+          .map((tag) => `title_like=${tag}`)
+          .join("&");
+        const queryString = `/videos?${tagsString}&_limit=4`;
+        return queryString;
+      },
+
+      // Provides This Query Unique Tags
+      providesTags: (result, error, arg) => [
+        { type: "RelatedVideos", id: arg.id },
+      ],
+   }),
+
+   })
+
+```
+
+##### stapes -> (3)
 
 ```sh
    endpoints: (builder) => ({
@@ -208,10 +256,27 @@ export const { useGetRelatedVideosQuery } = apiSlice;
 
          // Invalidates tags videos catch & than Automated Re-fetching
          invalidatesTags: ["Videos"],
-         
+
       }),
    }),
 
-   export const { useGetVideoQuery } = apiSlice;
+```
 
+#### or
+
+```sh
+   endpoints: (builder) => ({
+      editVideo: builder.mutation({
+         query: ({ id, data }) => ({
+            url: `/videos/${id}`,
+            method: "PATCH",
+            body: data,
+         }),
+         invalidatesTags: (result, error, arg) => [
+            "Videos",
+            { type: "Video", id: arg.id },
+            { type: "RelatedVideos", id: arg.id },
+         ],
+      }),
+   }),
 ```
