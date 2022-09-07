@@ -51,7 +51,7 @@ export const { useGetVideosQuery } = apiSlice;
 
 ```
 
-#### 3.1 Get Api items --> like videos in ui
+#### 3.1 Get Api items --> like videos in UI
 
 ```sh
   const { data: videos, isLoading, isError } = useGetVideosQuery();
@@ -100,7 +100,7 @@ export const { useGetVideosQuery } = apiSlice;
 
 ```
 
-#### 4.1 Get Api item --> like single video in ui
+#### 4.1 Get Api item --> like single video in UI
 
 ```sh
    const { videoId } = useParams();
@@ -145,5 +145,37 @@ export const { useGetVideosQuery } = apiSlice;
     }),
 
 export const { useGetRelatedVideosQuery } = apiSlice;
+
+```
+
+#### 6. Mutation - Add Items/video to server API => Mutation Api item --> Adding video - POST request
+
+```sh
+   endpoints: (builder) => ({
+      addVideo: builder.mutation({
+         query: (data) => ({
+            url: "/videos",
+            method: "POST",
+            body: data,
+         }),
+      }),
+   }),
+
+   export const { useGetVideoQuery } = apiSlice;
+
+```
+
+#### 6.1 Mutation - Add Items/video to server API in UI
+
+```sh
+     const [addVideo, { isLoading, isSuccess, isError }] = useAddVideoMutation();
+
+       // Submit function
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    addVideo(data);
+
+  };
 
 ```
