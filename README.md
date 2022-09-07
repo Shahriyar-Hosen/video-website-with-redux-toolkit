@@ -170,7 +170,7 @@ export const { useGetRelatedVideosQuery } = apiSlice;
 ```sh
    const [addVideo, { isLoading, isSuccess, isError }] = useAddVideoMutation();
 
-       // Submit function
+   // Submit function
    const handleSubmit = (e) => {
       e.preventDefault();
 
@@ -280,3 +280,16 @@ export const { useGetRelatedVideosQuery } = apiSlice;
       }),
    }),
 ```
+
+
+#### 3. Query in Api Slice => Get Api items --> like videos
+
+```sh
+  endpoints: (builder) => ({
+      // Query --> like get
+      getVideos: builder.query({
+         query: () => "/videos",
+      }),
+   }),
+
+export const { useGetVideosQuery } = apiSlice;
