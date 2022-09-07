@@ -179,3 +179,37 @@ export const { useGetRelatedVideosQuery } = apiSlice;
    };
 
 ```
+
+#### 6.2 Cache Behavior - Revalidation => Automated Re-fetching --> Adding video - POST request
+
+##### stapes -> (1)
+
+```sh
+   reducerPath: "api",
+   baseQuery: fetchBaseQuery({}),
+
+   // tag Types -> added tags
+   tagTypes: ["Videos"],
+
+   endpoints:{}
+
+```
+
+##### stapes -> (2)
+
+```sh
+   endpoints: (builder) => ({
+      addVideo: builder.mutation({
+         query: (data) => ({
+            url: "/videos",
+            method: "POST",
+            body: data,
+         }),
+         // Invalidates tags videos catch & than Automated Re-fetching
+         invalidatesTags: ["Videos"],
+      }),
+   }),
+
+   export const { useGetVideoQuery } = apiSlice;
+
+```
