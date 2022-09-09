@@ -37,7 +37,7 @@ export const store = configureStore({
 
 ```
 
-#### 3. Query in Api Slice => Get Api items --> like videos
+#### 3. Api items Slice => Query in Api Get --> like videos
 
 ```sh
   endpoints: (builder) => ({
