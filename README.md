@@ -100,7 +100,7 @@ export const { useGetVideosQuery } = apiSlice;
 
 ```
 
-#### 4.1 Get Api item --> like single video in UI
+#### 4.1 Get single item --> like single video in UI
 
 ```sh
    const { videoId } = useParams();
