@@ -86,7 +86,7 @@ export const { useGetVideosQuery } = apiSlice;
 
 ```
 
-#### 4. Query in Api Slice => Get Api item --> like single video
+#### 4. Get Api item => Query in Api Slice --> like single video
 
 ```sh
    endpoints: (builder) => ({
